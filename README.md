@@ -1,4 +1,5 @@
-# Hybrid Explainable Intrusion Detection System Integrating Machine Learning and Deep Learning
+# Explainable Multi-Model Intrusion Detection System using Machine Learning and Deep Learning Approach
+
 
 CSE499 Project
 
