@@ -25,7 +25,7 @@ def create_status(df):
     return df
 
 def find_duplicate_rows(df):
-    """Find duplicate rows in the DataFrame"""
+    """Find total number of duplicate values in the DataFrame"""
     duplicate_rows = df.duplicated().sum()
     return duplicate_rows
 
@@ -67,25 +67,25 @@ def find_low_variance_columns(df, threshold=0.05):
     low_variance_columns = variances[variances < threshold].index.tolist()
     return low_variance_columns
 
+
 #######################################
 ###### Data Processing Functions ######
 ######### Replacing Functions #########
 
-def drop_columns(df, columns):
-    """Drop columns in the DataFrame"""
-    return df.drop(columns=columns, axis=1, inplace=True)
-
-def drop_rows(df):
+def remove_duplicate_values(df):
     """Drop rows with the duplicated values in the DataFrame"""
-    return df.drop_duplicated(inplace=True)
+    df = df.drop_duplicates()
+    return df
 
 def replace_infinite_values(df):
     """Replace infinite values with NaN in the DataFrame"""
-    return df.replace([np.inf, -np.inf], np.nan, inplace=True)
+    df = df.replace([np.inf, -np.inf], np.nan)
+    return df
 
 def replace_null_values(df):
     """Replace missing values with the mean of the columns in the DataFrame"""
-    return df.fillna(df.mean(), implace=True)
+    df = df.fillna(df.mean())
+    return df
 
 
 
