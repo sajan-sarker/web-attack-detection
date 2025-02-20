@@ -21,7 +21,8 @@ def load_data(file_path):
 
 def create_status(df):
     """create a 'status' column based on the 'Label' column in the DataFrame"""
-    df['status'] = df['Label'].apply(lambda x: 'safe' if x == 'Benign' else 'malicious')
+    """map 'Benign' to 0 and 'Malicious' to 1"""
+    df['status'] = df['Label'].apply(lambda x: 0 if x == 'Benign' else 1)
     return df
 
 def find_duplicate_rows(df):
