@@ -2,15 +2,42 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+import os
 
-#######################################
-######### Data Load Functions #########
+########################################
+##### Data Load and Save Functions #####
 def load_data(file_path):
     """Load dataset from the given path and return dataframe"""
     try: 
         file = pd.read_csv(file_path)
         return pd.DataFrame(file)
 
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+def save_data(df, file_path):
+    """Save the dataframe to the given path"""
+    try:
+        df.to_csv(file_path, index=False)
+        print("Data has been saved successfully")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+def save_split_data(data, columns, file_path, file_name):
+    """Reduce the dataset size and Save the dataframe to the given path"""
+    try:
+        path = os.path.join(file_path, file_name)   # join the file path and file name
+        df = pd.DataFrame(data, columns=columns)    # create a DataFrame from the data
+        
+        for column in df.columns:   # iterate through the columns and reduce data types
+            if pd.api.types.is_integer_dtype(df[column]):
+                # downcast the integer columns to the smallest possible types
+                df[column] = pd.to_numeric(df[column], downcast='integer')  
+            else:
+                # downcast the float columns to the smallest possible types
+                df[column] = pd.to_numeric(df[column], downcast='float')
+        
+        df.to_csv(path, index=False)
     except Exception as e:
         print(f"An error occurred: {e}")
 
@@ -125,6 +152,51 @@ def print_label_distribution(df, feature, a=5, b=5):
     ax.set_ylabel('Count', fontsize=10)
 
     # adjust x-tick limits and format labels
+    ax.set_xticks(x)
     ax.set_xticklabels(x, rotation=45, ha='right', fontsize=12)
     plt.tight_layout()
     plt.show()
+
+##########################################
+##### Correlation Analysis Functions #####
+def correlation_analysis(df, target_column, threshold=0.9):
+    """Analyse the correlation between the numerical features in the dataframe"""
+    feature_columns = [col for col in df.columns if col not in target_column]   # get the feature columns only
+    
+    # calculate the correlation matrix
+    corr_matrix = df[feature_columns].corr()
+    
+    # plot the correlation matrix
+    plt.figure(figsize=(20,20))
+    sns.heatmap(corr_matrix, annot=False, cmap='coolwarm', center=0, linewidths=0.5)
+    plt.title("Correlation Matrix of the Features Heatmap")
+    plt.show()
+    
+    # Find the highly correlated features
+    high_corr_pairs = []
+    
+    for i in range(len(corr_matrix.columns)):
+        for j in range(i):
+            if abs(corr_matrix.iloc[i, j]) > threshold: # check if the absolute correlation is above the threshold
+                # append the column names and the correlation value
+                high_corr_pairs.append((corr_matrix.columns[i], corr_matrix.columns[j], corr_matrix.iloc[i, j]))
+    return high_corr_pairs
+
+def calculate_outliers_percentage(df):
+    """calculate the percentage of outliers in each column using the IQR method"""
+    outlier_percentage = {}
+    
+    for column in df.columns:
+        q1 = df[column].quantile(0.25)
+        q3 = df[column].quantile(0.75)
+        iqr = q3 - q1
+
+        lower = q1 - 1.5 * iqr
+        upper = q3 + 1.5 * iqr
+        
+        # calculate the percentage of outliers in the column
+        outlier = df[(df[column] < lower) | (df[column] > upper)]
+        percentage = (outlier.shape[0] / df.shape[0]) * 100
+        outlier_percentage[column] = percentage
+    
+    return outlier_percentage
