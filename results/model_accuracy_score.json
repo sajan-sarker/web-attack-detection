@@ -1,0 +1,7 @@
+{
+    "xgboost":{
+        "train_acc": 0.9865,
+        "val_acc": 0.9867,
+        "test_acc": 0.9863
+    }
+}
