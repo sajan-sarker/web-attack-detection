@@ -1,0 +1,9 @@
+{
+ "Benign": "0",
+ "Botnet": "1",
+ "Brute Force Attack": "2",
+ "DDoS": "3",
+ "DoS": "4",
+ "Port Scanning Attack": "5",
+ "nan": "6"
+}
