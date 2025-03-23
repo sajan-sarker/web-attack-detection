@@ -2,7 +2,10 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+import joblib
 import os
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
 
 ########################################
 ##### Data Load and Save Functions #####
@@ -20,24 +23,6 @@ def save_data(df, file_path):
     try:
         df.to_csv(file_path, index=False)
         print("Data has been saved successfully")
-    except Exception as e:
-        print(f"An error occurred: {e}")
-
-def save_split_data(data, columns, file_path, file_name):
-    """Reduce the dataset size and Save the dataframe to the given path"""
-    try:
-        path = os.path.join(file_path, file_name)   # join the file path and file name
-        df = pd.DataFrame(data, columns=columns)    # create a DataFrame from the data
-        
-        for column in df.columns:   # iterate through the columns and reduce data types
-            if pd.api.types.is_integer_dtype(df[column]):
-                # downcast the integer columns to the smallest possible types
-                df[column] = pd.to_numeric(df[column], downcast='integer')  
-            else:
-                # downcast the float columns to the smallest possible types
-                df[column] = pd.to_numeric(df[column], downcast='float')
-        
-        df.to_csv(path, index=False)
     except Exception as e:
         print(f"An error occurred: {e}")
 
@@ -116,7 +101,6 @@ def replace_null_values(df):
     return df
 
 
-
 ########################################
 ##### Data Visualization Functions #####
 #### Data Imbalance Check Functions ####
@@ -128,32 +112,32 @@ def count_plot(df, feature, x=6, y=5, rotation='horizontal'):
     plt.xticks(rotation=rotation)
     plt.show()
 
-def print_label_distribution(df, feature, a=5, b=5):
+def plot_label_distribution(df, feature, labels, title, a=5, b=5):
     """Print the distribution of the target column in the DataFrame"""
     label_count = df[feature].value_counts()
     x = label_count.index
     y = label_count.values
 
-    fig, ax = plt.subplots(figsize=(a, b))
+    _, ax = plt.subplots(figsize=(a, b))
 
     ax.bar(x, y, color='#9D8DF1', edgecolor='black' ) # plot the distribution
     for i, value in enumerate(y):
         ax.text(
-            i,
+            x[i],
             value,
             f" {value:,}",
             ha='center',
             va='bottom',
             fontsize=12,
-            color='black'
+            color='red'
         )
-    ax.set_title('Class Distribution', fontsize=12)
-    ax.set_xlabel(feature, fontsize=10)
+    ax.set_title(title, fontsize=12)
+    ax.set_xlabel('Class', fontsize=10)
     ax.set_ylabel('Count', fontsize=10)
 
     # adjust x-tick limits and format labels
     ax.set_xticks(x)
-    ax.set_xticklabels(x, rotation=45, ha='right', fontsize=12)
+    ax.set_xticklabels([labels[val] for val in x], rotation=0, ha='center', fontsize=12)
     plt.tight_layout()
     plt.show()
 
@@ -200,3 +184,69 @@ def calculate_outliers_percentage(df):
         outlier_percentage[column] = percentage
     
     return outlier_percentage
+
+
+
+#############################################
+##### Splitted Dataset Saving Functions #####
+
+def split_scale_save(df, top_features, target, file_path, version):
+    """ Select the top features, split dataset into train, val, test; scale the features and save the files"""
+    # Select the top features
+    X = df[top_features]
+    y = df[target]
+
+    print("="*50)
+    print(f"{version} Dataset Info:")
+    print(f"Shape of X: {X.shape}")
+    print(f"Shape of y: {y.shape}")
+    print()
+
+    # Split the dataset into train and test sets
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20, random_state=42)
+
+
+    print(f"Train Dataset Shape: {X_train.shape}, {y_train.shape}")
+    print(f"Test Dataset Shape: {X_test.shape}, {y_test.shape}")
+    print()
+
+    scaler = StandardScaler()
+
+    # Scale the features
+    X_train_scaled = scaler.fit_transform(X_train)
+    X_test_scaled = scaler.transform(X_test)
+
+    # save the scaler
+    try:
+        joblib.dump(scaler, file_path + f'/scaler_{version}.pkl')
+    except Exception as e:
+        print(f"Unable to save Scaler: {e}")
+
+    def save_split_data(data, columns, file_path, file_name):
+        """Reduce the dataset size and Save the dataframe to the given path"""
+        try:
+            #path = os.path.join(file_path, file_name)   # join the file path and file name
+            df = pd.DataFrame(data, columns=columns)    # create a DataFrame from the data
+            path = file_path + file_name
+            
+            for column in df.columns:   # iterate through the columns and reduce data types
+                if pd.api.types.is_integer_dtype(df[column]):
+                    # downcast the integer columns to the smallest possible types
+                    df[column] = pd.to_numeric(df[column], downcast='integer')  
+                else:
+                    # downcast the float columns to the smallest possible types
+                    df[column] = pd.to_numeric(df[column], downcast='float')
+            
+            df.to_csv(path, index=False)
+        except Exception as e:
+            print(f"Unable to save {data}: {e}")
+
+    # Save the split and scaled datasets
+    save_split_data(X_train_scaled, top_features, file_path, '/X_train.csv')
+    save_split_data(X_test_scaled, top_features, file_path, '/X_test.csv')
+
+    save_split_data(y_train, target, file_path, '/y_train.csv')
+    save_split_data(y_test, target, file_path, '/y_test.csv')
+
+    print("Datasets saved successfully on:",file_path)
+    print()
