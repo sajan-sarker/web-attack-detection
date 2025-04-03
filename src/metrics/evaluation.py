@@ -502,6 +502,19 @@ def plot_learning_curves(history, name, version):
     plt.tight_layout()
     plt.show()
 
+def plot_training_curve(history):
+    """ plot the learning curve of the final dnn """
+    plt.figure(figsize=(8,6))
+    plt.plot(history['train_losses'], label="Training Loss")
+    plt.plot(history['train_acc_multi'], label='Train Multi-class Acc')
+    plt.plot(history['train_acc_binary'], label='Train Binary Acc')
+    plt.plot(history['train_acc_avg'], label='Train Avg Acc')
+    plt.title(f"Deep Neural Network Training Curve")
+    plt.xlabel("Epochs")
+    plt.ylabel("Accuracy/Losses")
+    plt.legend()
+    plt.tight_layout()
+    plt.show()
 
 
 def test_model(model, test_loader, device):
