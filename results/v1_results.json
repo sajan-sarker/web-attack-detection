@@ -1,0 +1,212 @@
+{
+  "Decision Tree": {
+    "Binary Classification Results": {
+      "Train Acc": 0.9622,
+      "Test Acc": 0.9613,
+      "Train Loss": 0.1207,
+      "Test Loss": 0.128,
+      "F1-score": 0.9763,
+      "Precision": 0.9564,
+      "Recall": 0.9972,
+      "TPR": 0.9972,
+      "FPR": 0.1822
+    },
+    "Multi-class Classification Results": {
+      "Train Acc": 0.9718,
+      "Test Acc": 0.9707,
+      "Train Loss": 0.0766,
+      "Test Loss": 0.0921,
+      "F1-score": 0.9707,
+      "Precision": 0.9709,
+      "Recall": 0.9707,
+      "TPR": 0.9708,
+      "FPR": 0.0073
+    },
+    "Average Classification Results": {
+      "Train Acc": 0.967,
+      "Test Acc": 0.966,
+      "Train Loss": 0.0987,
+      "Test Loss": 0.0987,
+      "F1-score": 0.9735,
+      "Precision": 0.9637,
+      "Recall": 0.9839,
+      "TPR": 0.984,
+      "FPR": 0.0948
+    }
+  },
+  "Random Forest": {
+    "Binary Classification Results": {
+      "Train Acc": 0.9788,
+      "Test Acc": 0.9779,
+      "Train Loss": 0.0584,
+      "Test Loss": 0.0594,
+      "F1-score": 0.9863,
+      "Precision": 0.9749,
+      "Recall": 0.998,
+      "TPR": 0.998,
+      "FPR": 0.1028
+    },
+    "Multi-class Classification Results": {
+      "Train Acc": 0.9748,
+      "Test Acc": 0.9744,
+      "Train Loss": 0.0674,
+      "Test Loss": 0.0711,
+      "F1-score": 0.9746,
+      "Precision": 0.975,
+      "Recall": 0.9744,
+      "TPR": 0.9745,
+      "FPR": 0.0064
+    },
+    "Average Classification Results": {
+      "Train Acc": 0.9768,
+      "Test Acc": 0.9761,
+      "Train Loss": 0.0629,
+      "Test Loss": 0.0629,
+      "F1-score": 0.9804,
+      "Precision": 0.975,
+      "Recall": 0.9862,
+      "TPR": 0.9863,
+      "FPR": 0.0546
+    }
+  },
+  "Naive Bayes": {
+    "Binary Classification Results": {
+      "Train Acc": 0.7386,
+      "Test Acc": 0.7368,
+      "Train Loss": 0.8435,
+      "Test Loss": 0.8049,
+      "F1-score": 0.8134,
+      "Precision": 0.9397,
+      "Recall": 0.7171,
+      "TPR": 0.7171,
+      "FPR": 0.1842
+    },
+    "Multi-class Classification Results": {
+      "Train Acc": 0.8441,
+      "Test Acc": 0.8472,
+      "Train Loss": 4.3829,
+      "Test Loss": 4.3659,
+      "F1-score": 0.8427,
+      "Precision": 0.8608,
+      "Recall": 0.8472,
+      "TPR": 0.847,
+      "FPR": 0.0383
+    },
+    "Average Classification Results": {
+      "Train Acc": 0.7914,
+      "Test Acc": 0.792,
+      "Train Loss": 2.6132,
+      "Test Loss": 2.6132,
+      "F1-score": 0.8281,
+      "Precision": 0.9003,
+      "Recall": 0.7821,
+      "TPR": 0.782,
+      "FPR": 0.1112
+    }
+  },
+  "Ada Boost": {
+    "Binary Classification Results": {
+      "Train Acc": 0.9015,
+      "Test Acc": 0.9021,
+      "Train Loss": 0.324,
+      "Test Loss": 0.3227,
+      "F1-score": 0.9424,
+      "Precision": 0.8911,
+      "Recall": 0.9999,
+      "TPR": 0.9999,
+      "FPR": 0.4895
+    },
+    "Multi-class Classification Results": {
+      "Train Acc": 0.3675,
+      "Test Acc": 0.3602,
+      "Train Loss": 1.5615,
+      "Test Loss": 1.563,
+      "F1-score": 0.2171,
+      "Precision": 0.1645,
+      "Recall": 0.3602,
+      "TPR": 0.3643,
+      "FPR": 0.1597
+    },
+    "Average Classification Results": {
+      "Train Acc": 0.6345,
+      "Test Acc": 0.6312,
+      "Train Loss": 0.9427,
+      "Test Loss": 0.9427,
+      "F1-score": 0.5797,
+      "Precision": 0.5278,
+      "Recall": 0.6801,
+      "TPR": 0.6821,
+      "FPR": 0.3246
+    }
+  },
+  "MLP": {
+    "Binary Classification Results": {
+      "Train Acc": 0.9601,
+      "Test Acc": 0.9596,
+      "Train Loss": 0.1186,
+      "Test Loss": 0.1192,
+      "F1-score": 0.9745,
+      "Precision": 0.9851,
+      "Recall": 0.9641,
+      "TPR": 0.9641,
+      "FPR": 0.0584
+    },
+    "Multi-class Classification Results": {
+      "Train Acc": 0.9565,
+      "Test Acc": 0.956,
+      "Train Loss": 0.164,
+      "Test Loss": 0.1663,
+      "F1-score": 0.9564,
+      "Precision": 0.9584,
+      "Recall": 0.956,
+      "TPR": 0.9561,
+      "FPR": 0.011
+    },
+    "Average Classification Results": {
+      "Train Acc": 0.9583,
+      "Test Acc": 0.9578,
+      "Train Loss": 0.1413,
+      "Test Loss": 0.1413,
+      "F1-score": 0.9654,
+      "Precision": 0.9718,
+      "Recall": 0.96,
+      "TPR": 0.9601,
+      "FPR": 0.0347
+    }
+  },
+  "Ensemble (DT + RF)": {
+    "Binary Classification Results": {
+      "Train Acc": 0.9701,
+      "Test Acc": 0.9695,
+      "Train Loss": 0.0689,
+      "Test Loss": 0.0702,
+      "F1-score": 0.9812,
+      "Precision": 0.9652,
+      "Recall": 0.9978,
+      "TPR": 0.9978,
+      "FPR": 0.1441
+    },
+    "Multi-class Classification Results": {
+      "Train Acc": 0.974,
+      "Test Acc": 0.9729,
+      "Train Loss": 0.0667,
+      "Test Loss": 0.0708,
+      "F1-score": 0.9729,
+      "Precision": 0.9731,
+      "Recall": 0.9729,
+      "TPR": 0.973,
+      "FPR": 0.0068
+    },
+    "Average Classification Results": {
+      "Train Acc": 0.972,
+      "Test Acc": 0.9712,
+      "Train Loss": 0.0678,
+      "Test Loss": 0.0678,
+      "F1-score": 0.9771,
+      "Precision": 0.9692,
+      "Recall": 0.9854,
+      "TPR": 0.9854,
+      "FPR": 0.0755
+    }
+  }
+}
