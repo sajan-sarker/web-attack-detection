@@ -54,11 +54,21 @@ def check_metrics(model, name, X_train, y_train, X_test, y_test):
     test_acc_avg = (test_acc_binary + test_acc_multi) / 2
 
     # calculate losses
-    train_loss_multi = log_loss(train_true_multi, train_prob_multi) if train_prob_multi is not None else float('nan')
-    train_loss_binary = log_loss(train_true_binary, train_prob_binary) if train_prob_binary is not None else float('nan')
+    def safe_log_loss(y_true, y_pred_proba):
+        if y_pred_proba is not None:
+            if len(y_pred_proba.shape) == 1:
+                # Convert to 2D array with two columns: [1-p, p]
+                y_pred_proba = np.vstack([1 - y_pred_proba, y_pred_proba]).T
+            labels = list(range(y_pred_proba.shape[1]))
+            return log_loss(y_true, y_pred_proba, labels=labels)
+        else:
+            return float('nan')
+
+    train_loss_multi = safe_log_loss(train_true_multi, train_prob_multi) 
+    train_loss_binary = safe_log_loss(train_true_binary, train_prob_binary) 
     train_loss_avg = (train_loss_multi + train_loss_binary) / 2
-    test_loss_multi = log_loss(test_true_multi, test_prob_multi) if test_prob_multi is not None else float('nan')
-    test_loss_binary = log_loss(test_true_binary, test_prob_binary) if test_prob_binary is not None else float('nan')
+    test_loss_multi = safe_log_loss(test_true_multi, test_prob_multi) 
+    test_loss_binary = safe_log_loss(test_true_binary, test_prob_binary)
     test_loss_avg = (train_loss_multi + train_loss_binary) / 2
 
     ## ========================================================================================================= ##
