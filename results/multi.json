@@ -1,0 +1,26 @@
+{
+  "Decision Tree": {
+    "Accuracy": 0.9691,
+    "F1-score": 0.9692,
+    "Precision": 0.9697,
+    "Recall": 0.9691,
+    "TPR": 0.9721,
+    "FPR": 0.0054
+  },
+  "Random Forest": {
+    "Accuracy": 0.9734,
+    "F1-score": 0.9735,
+    "Precision": 0.9741,
+    "Recall": 0.9734,
+    "TPR": 0.9744,
+    "FPR": 0.0047
+  },
+  "Ensemble Model (Decision Tree + Random Forest)": {
+    "Accuracy": 0.9726,
+    "F1-score": 0.9726,
+    "Precision": 0.9731,
+    "Recall": 0.9726,
+    "TPR": 0.9742,
+    "FPR": 0.0048
+  }
+}

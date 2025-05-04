@@ -1,0 +1,23 @@
+{
+  "Binary Scores": {
+    "Accuracy": 0.9719,
+    "F1-score": 0.9819,
+    "Precision": 0.9671,
+    "Recall": 0.9972,
+    "False Positive Rate (FPR)": 0.1107
+  },
+  "Multi-class Scores": {
+    "Accuracy": 0.9726,
+    "F1-score": 0.9726,
+    "Precision": 0.9731,
+    "Recall": 0.9726,
+    "False Positive Rate (FPR)": 0.0048
+  },
+  "Average Scores": {
+    "Accuracy": 0.9722,
+    "F1-score": 0.9773,
+    "Precision": 0.9701,
+    "Recall": 0.9849,
+    "False Positive Rate (FPR)": 0.0578
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "Small": {
+    "Decision Tree": 0.966,
+    "Random Forest": 0.9761,
+    "Naive Bayes": 0.7914,
+    "Ada Boost": 0.6312,
+    "Multi Layer Perceptron": 0.9578,
+    "Ensemble (DT + RF)": 0.9712
+  },
+  "Medium": {
+    "Decision Tree": 0.9687,
+    "Random Forest": 0.975,
+    "Naive Bayes": 0.8649,
+    "Ada Boost": 0.6114,
+    "Multi Layer Perceptron": 0.9273,
+    "Ensemble (DT + RF)": 0.9722
+  },
+  "Large": {
+    "Decision Tree": 0.9663,
+    "Random Forest": 0.9716,
+    "Naive Bayes": 0.675,
+    "Ada Boost": 0.6376,
+    "Multi Layer Perceptron": 0.8787,
+    "Ensemble (DT + RF)": 0.9692
+  }
+}
