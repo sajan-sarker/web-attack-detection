@@ -1,0 +1,79 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+header {
+  background: linear-gradient(to.right, #007bff, #00c6ff);
+}
+
+.navbar-nav .nav-link {
+  color: white !important;
+  margin: 0 15px;
+}
+
+section {
+  padding: 20px 0;
+}
+
+#results-table {
+  display: table; /* Ensure table is always visible, even if empty */
+}
+
+#xai-section {
+  display: none;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+#xai-plot img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Custom styles for system design image */
+.image-caption {
+  margin-top: 10px;
+  font-style: italic;
+  color: #555;
+  font-size: 0.9rem;
+  text-align: center; /* Explicitly center the caption text */
+}
+
+/* Custom styles for system design image */
+.img-caption-middle {
+  margin-top: 10px;
+  font-style: italic;
+  color: #555;
+  font-size: 0.9rem;
+  text-align: center; /* Explicitly center the caption text */
+}
+
+.result-img {
+  max-width: 550px; /* Increased from 300px to 450px */
+  max-height: 500px; /* Added to control height */
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  object-fit: contain; /* Ensures the image fits within the dimensions without distortion */
+}
+
+/* Styles for captions (used for both dataset and result images) */
+.result-caption {
+  margin-top: 10px;
+  font-style: italic;
+  color: #555;
+  font-size: 0.9rem;
+  text-align: center; /* Explicitly center the caption text */
+}
